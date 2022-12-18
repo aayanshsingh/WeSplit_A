@@ -12,7 +12,8 @@ struct ContentView: View {
     @State private var selectedInput = "Kilometers"
     @State private var selectedOutput = "Kilometers"
     @State private var inputValue = 0.0
-    @FocusState private var isFocused: Bool
+    @FocusState private var inputIsFocused: Bool
+
     
     var result: String{
         let inputToMetersMultiplier: Double
@@ -60,7 +61,8 @@ struct ContentView: View {
                 Section{
                     
                 TextField("Enter value", value: $inputValue, format: .number).keyboardType(.decimalPad)
-                        .focused($isFocused)
+                        .focused($inputIsFocused)
+
                 }header: {
                     Text("Enter the input value")
                 }
@@ -87,16 +89,16 @@ struct ContentView: View {
                 }
                 
             }.navigationTitle("Distance Converter")
-                .toolbar{
-                    ToolbarItemGroup(placement: .keyboard){
-                        Spacer()
-                        
-                        Button("Done"){
-                            isFocused = false
-                            
-                        }
-                    }
-                }
+            .toolbar{
+                                    ToolbarItemGroup(placement: .keyboard){
+                                        Spacer()
+                                        
+                                        Button("Done"){
+                                            inputIsFocused = false
+                                            
+                                        }
+                                    }
+                                }
         }
     }
 }
